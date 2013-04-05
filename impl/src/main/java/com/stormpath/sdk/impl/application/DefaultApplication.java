@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Stormpath, Inc.
+ * Copyright 2013 Stormpath, Inc. and contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -127,5 +127,13 @@ public class DefaultApplication extends AbstractInstanceResource implements Appl
     @Override
     public AuthenticationResult authenticateAccount(AuthenticationRequest request) {
         return new BasicAuthenticator(getDataStore()).authenticate(getHref(), request);
+    }
+
+    /**
+     * @since 0.8
+     */
+    @Override
+    public void delete() {
+        getDataStore().delete(this);
     }
 }

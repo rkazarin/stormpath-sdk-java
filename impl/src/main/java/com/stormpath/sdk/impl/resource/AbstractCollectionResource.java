@@ -56,13 +56,22 @@ public abstract class AbstractCollectionResource<T extends Resource> extends Abs
 
     protected abstract Class<T> getItemType();
 
+    /**
+     *
+     * @since 0.8
+     */
     public boolean contains(T resource) {
 
         if (!StringUtils.hasText(resource.getHref())) {
             return false;
         }
+        //TODO revise this implementation after pagination is implemented
 
+        // have to loop the collection and check the hrefs because calling 'contains' on the items collection
+        // might not work when the hrefs are the same, but the resource 'equals'
+        // method might not return 'true' because it requires both resources to have the same properties
         for (Resource r : this) {
+
             if (resource.getHref().equals(r.getHref())) {
                 return true;
             }

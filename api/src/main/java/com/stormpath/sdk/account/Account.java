@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Stormpath, Inc.
+ * Copyright 2013 Stormpath, Inc. and contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,4 +73,14 @@ public interface Account extends Resource, Saveable {
     GroupMembership addGroup(Group group);
 
     EmailVerificationToken getEmailVerificationToken();
+
+    /**
+     * @since 0.8
+     */
+    boolean hasGroup(Group group);
+
+    /**
+     * @since 0.8
+     */
+    void delete();
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Stormpath, Inc.
+ * Copyright 2013 Stormpath, Inc. and contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -99,5 +99,21 @@ public class DefaultGroup extends AbstractInstanceResource implements Group {
     @Override
     public GroupMembership addAccount(Account account) {
         return DefaultGroupMembership.create(account, this, getDataStore());
+    }
+
+    /**
+     * @since 0.8
+     */
+    @Override
+    public boolean hasAccount(Account account) {
+        return getAccounts().contains(account);
+    }
+
+    /**
+     * @since 0.8
+     */
+    @Override
+    public void delete() {
+        getDataStore().delete(this);
     }
 }

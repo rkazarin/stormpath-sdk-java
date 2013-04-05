@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Stormpath, Inc.
+ * Copyright 2013 Stormpath, Inc. and contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -158,5 +158,21 @@ public class DefaultAccount extends AbstractInstanceResource implements Account 
     @Override
     public EmailVerificationToken getEmailVerificationToken() {
         return getResourceProperty(EMAIL_VERIFICATION_TOKENS, EmailVerificationToken.class);
+    }
+
+    /**
+     * @since 0.8
+     */
+    @Override
+    public boolean hasGroup(Group group) {
+        return getGroups().contains(group);
+    }
+
+    /**
+     * @since 0.8
+     */
+    @Override
+    public void delete() {
+        getDataStore().delete(this);
     }
 }

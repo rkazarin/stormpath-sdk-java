@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Stormpath, Inc.
+ * Copyright 2013 Stormpath, Inc. and contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import com.stormpath.sdk.account.Account;
 import com.stormpath.sdk.account.EmailVerificationToken;
 import com.stormpath.sdk.application.Application;
 import com.stormpath.sdk.application.ApplicationList;
+import com.stormpath.sdk.directory.Directory;
 import com.stormpath.sdk.directory.DirectoryList;
 import com.stormpath.sdk.impl.ds.InternalDataStore;
 import com.stormpath.sdk.impl.resource.AbstractInstanceResource;
@@ -86,5 +87,14 @@ public class DefaultTenant extends AbstractInstanceResource implements Tenant {
 
         //execute a POST (should clean this up / make it more obvious)
         return getDataStore().save(evToken, Account.class);
+    }
+
+    /**
+     * @since 0.8
+     */
+    @Override
+    public void createDirectory(Directory directory) {
+        String href = "/" + DIRECTORIES; //TODO enable auto discovery
+        getDataStore().create(href, directory);
     }
 }

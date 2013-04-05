@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Stormpath, Inc.
+ * Copyright 2013 Stormpath, Inc. and contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.stormpath.sdk.tenant;
 import com.stormpath.sdk.account.Account;
 import com.stormpath.sdk.application.Application;
 import com.stormpath.sdk.application.ApplicationList;
+import com.stormpath.sdk.directory.Directory;
 import com.stormpath.sdk.directory.DirectoryList;
 import com.stormpath.sdk.resource.Resource;
 import com.stormpath.sdk.resource.Saveable;
@@ -41,4 +42,9 @@ public interface Tenant extends Resource, Saveable {
      * @since 0.4
      */
     Account verifyAccountEmail(String token);
+
+    /**
+     * @since 0.8
+     */
+    void createDirectory(Directory directory);
 }

@@ -20,6 +20,10 @@ package com.stormpath.sdk.resource;
  */
 public interface CollectionResource<T extends Resource> extends Resource, Iterable<T> {
 
+    /**
+     *
+     * @since 0.8
+     */
     boolean contains(T resource);
 
 }
