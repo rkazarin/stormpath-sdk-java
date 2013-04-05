@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Stormpath, Inc.
+ * Copyright 2013 Stormpath, Inc. and contributors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,17 @@
 package com.stormpath.sdk.impl.resource;
 
 import com.stormpath.sdk.impl.ds.InternalDataStore;
+import com.stormpath.sdk.impl.util.StringUtils;
 import com.stormpath.sdk.resource.CollectionResource;
 import com.stormpath.sdk.resource.Resource;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @since 0.2
@@ -48,6 +55,21 @@ public abstract class AbstractCollectionResource<T extends Resource> extends Abs
     }
 
     protected abstract Class<T> getItemType();
+
+    public boolean contains(T resource) {
+
+        if (!StringUtils.hasText(resource.getHref())) {
+            return false;
+        }
+
+        for (Resource r : this) {
+            if (resource.getHref().equals(r.getHref())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     @SuppressWarnings("unchecked")
     public Page<T> getCurrentPage() {
